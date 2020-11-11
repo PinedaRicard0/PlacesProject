@@ -55,6 +55,14 @@
     <Compile Include="Migrations\202011100236061_InititalMigration.designer.cs">
       <DependentUpon>202011100236061_InititalMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011110028247_CreatingRegionAndMinicipalitiesColums.cs" />
+    <Compile Include="Migrations\202011110028247_CreatingRegionAndMinicipalitiesColums.designer.cs">
+      <DependentUpon>202011110028247_CreatingRegionAndMinicipalitiesColums.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011110032273_CreatingRegionMunicipalitiesTbl.cs" />
+    <Compile Include="Migrations\202011110032273_CreatingRegionMunicipalitiesTbl.designer.cs">
+      <DependentUpon>202011110032273_CreatingRegionMunicipalitiesTbl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PlacesContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,6 +80,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202011100236061_InititalMigration.resx">
       <DependentUpon>202011100236061_InititalMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011110028247_CreatingRegionAndMinicipalitiesColums.resx">
+      <DependentUpon>202011110028247_CreatingRegionAndMinicipalitiesColums.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011110032273_CreatingRegionMunicipalitiesTbl.resx">
+      <DependentUpon>202011110032273_CreatingRegionMunicipalitiesTbl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

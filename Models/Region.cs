@@ -11,5 +11,12 @@ namespace Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
+
+        [Required]
+        public int Code { get; set; }
+
+        [MaxLength(100)]
+        [Required]
+        public string Name { get; set; }
     }
 }

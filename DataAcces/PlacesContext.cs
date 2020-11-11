@@ -23,5 +23,6 @@ namespace DataAcces
 
         public DbSet<Municipality> Municipality { get; set; }
         public DbSet<Region> Region { get; set; }
+        public DbSet <RegionMunicipalities> RegionMunicipalities { get; set; }
     }
 }

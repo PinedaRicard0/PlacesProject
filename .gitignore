@@ -73,3 +73,5 @@ _[Ss]cripts
 *.nupkg
 *.ncrunchsolution
 *.dot[Cc]over
+.vs/Places/v16/Server/sqlite3/storage.ide-shm
+.vs/Places/v16/Server/sqlite3/storage.ide-wal
