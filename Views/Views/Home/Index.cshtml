@@ -2,30 +2,45 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
+    <div class="jumbotron">
+        <h2>MUNICIPIO</h2>
         <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
+            <span>Cada municipio permite guardar los siguientes campos:</span><br />
+            <ul>
+                <li>Código numérico único</li>
+                <li>Texto como nombre del municipio</li>
+                <li>Estado que puede ser Activo o Inactivo</li>
+                <li>Ejemplo de un municipio (código: 5005, nombre: “Santa rosa”, estado: Inactivo)</li>
+            </ul>
         </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        <h2>REGIÓN</h2>
+        <p>
+            <span>Cada región permite guardar los siguientes campos:</span><br />
+            <ul>
+                <li>Código numérico único</li>
+                <li>Texto como nombre de la región</li>
+                <li>Ejemplo de una región (código: 7, nombre: “Valle de aburrá”)</li>
+            </ul>
+        </p>
+
+        <h2>TENER PRESENTE QUE</h2>
+        <p>
+            <span>Cada región permite guardar los siguientes campos:</span><br />
+            <ul>
+                <li>Una región contiene municipios y puede tener ninguno o varios municipios asociados</li>
+                <li>Se debe poder listar, editar y eliminar los MUNICIPIOS</li>
+                <li>Se debe poder listar, editar y eliminar las REGIONES.</li>
+                <li>Al editar una región se debe poder agregar o quitar municipios.</li>
+                <li>Un municipio puede estar en diferentes regiones, por ejemplo el municipio “Medellín”</li>
+                <li>
+                    puede estar en una región “Andina”, también en una región “Valle de aburra”, otra“Latina”,
+                    “Paisa”... etc.
+                </li>
+                <li>
+                    Los municipios que tienen las regiones solo puede ser municipios con estados activos, si
+                    aleditar un municipio se pone a estado “Inactivo”, este municipio ya no pertenece a la
+                    región(Es decir que la asociación desaparece).
+                </li>
+            </ul>
+        </p>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
