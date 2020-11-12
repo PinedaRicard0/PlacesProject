@@ -8,10 +8,11 @@ namespace Views.ViewModels
 {
     public class RegionViewModel
     {
-        public String Id { get; set; }
+        public Guid Id { get; set; }
+        [Required]
         [Display(Name = "Código")]
         public int Code { get; set; }
-
+        [Required]
         [Display(Name = "Nombre")]
         public string Name { get; set; }
     }

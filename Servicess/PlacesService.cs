@@ -24,10 +24,10 @@ namespace Services
             return res;
         }
 
-        public Municipality GetMunicipality(int municipalityCode)
+        public async Task<bool> SaveRegion(Region region)
         {
-            return null;
-
+            bool res = await _regionRepo.SaveRegion(region);
+            return res;
         }
     }
 }

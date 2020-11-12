@@ -23,5 +23,12 @@ namespace DataAcces
             List<Region> res =  await _context.Region.ToListAsync();
             return res;
         }
+
+        public async Task<bool> SaveRegion(Region region)
+        {
+            _context.Region.Add(region);
+            await _context.SaveChangesAsync();
+            return true;
+        }
     }
 }

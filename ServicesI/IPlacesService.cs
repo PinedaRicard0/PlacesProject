@@ -9,5 +9,6 @@ namespace IServices
     public interface IPlacesService
     {
         Task<List<Region>> GetAllRegions();
+        Task<bool> SaveRegion(Region region);
     }
 }

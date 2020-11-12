@@ -14,8 +14,8 @@ namespace Views.MapperFilter
 
         public static void Init() {
             var config = new MapperConfiguration(cfg => {
-                cfg.CreateMap<Region, RegionViewModel>().
-                    ForMember(dest => dest.Id, opt => opt.MapFrom(sou => sou.Id.ToString()));
+                cfg.CreateMap<Region, RegionViewModel>();
+                cfg.CreateMap<RegionViewModel, Region>();
             });
 
             Mapper = config.CreateMapper();

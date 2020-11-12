@@ -2,5 +2,42 @@
 @{
     ViewBag.Title = "Regions";
 }
+<script type="text/javascript" src="~/Scripts/Places/places.js"></script>
+<div class="container">
+    <div class="row ppalDiv">
+        <h2>Listado de regiones</h2>
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            @if (Model.Count() != 0)
+            {
+                <table class="table table-hover commonMargin">
+                    <tr class="tblHeader">
+                        <th>@Html.Raw("Código")</th>
+                        <th>@Html.Raw("Nombre")</th>
+                        <th></th>
+                    </tr>
+                    @foreach (var reg in Model)
+                    {
+                        <tr>
+                            <td>@Html.Raw(reg.Code.ToString())</td>
+                            <td>@Html.Raw(reg.Name)</td>
+                            <td><span class="glyphicon glyphicon-edit"></span> <span class="glyphicon glyphicon-trash"></span></td>
+                        </tr>
+                    }
+                </table>
+            }
+            else
+            {
+                <h4 class="commonMargin"><i>@Html.Raw("No hay regiones registradas")</i></h4>
+            }
+            <div class="btnContainer">
+                <button id="btnCreate" name="btnCreate" class="btn btnStyle" onclick="onBtnClick();">Crear Region</button>
+            </div>
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+    <br />
+    <div id="createRegionDiv"></div>
+ </div>
 
-@Html.Raw(Model.Count)
+<label id="actNewRegion" class="hidden">@Url.Action("NewRegion")</label>

@@ -22,3 +22,10 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/*Custom css styles*/
+.ppalDiv {margin-top:50px}
+.commonMargin {margin-top: 15px}
+.tblHeader {color:cadetblue}
+.btnStyle {background-color:cadetblue; color:white}
+.btnClose {background-color: dimgrey;color: white}

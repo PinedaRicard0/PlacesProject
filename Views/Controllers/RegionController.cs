@@ -21,12 +21,32 @@ namespace Views.Controllers
             _placesService = placesService;
             mapper = AutoMapperConfig.Mapper;
         }
-        // GET: Region
+        
+        [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult> Index()
         {
             var regions = await _placesService.GetAllRegions();
             var res = mapper.Map<List<Region>, List<RegionViewModel>>(regions);
             return View(res);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult NewRegion() {
+            RegionViewModel region = new RegionViewModel();
+            return PartialView("_CreateRegion", region);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<ActionResult> CreateRegion(RegionViewModel region) {
+            if (ModelState.IsValid) {
+                var res = mapper.Map<RegionViewModel, Region>(region);
+                var isSaved = await _placesService.SaveRegion(res);
+                return RedirectToAction("Index");
+            }
+            return PartialView("_CreateRegion", region);
         }
     }
 }

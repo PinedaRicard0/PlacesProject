@@ -9,5 +9,6 @@ namespace IDataAccess
     public interface IRegionRepo
     {
         Task<List<Region>> GetRegions();
+        Task<bool> SaveRegion(Region region);
     }
 }
