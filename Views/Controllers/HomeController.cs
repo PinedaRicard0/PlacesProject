@@ -1,8 +1,4 @@
 ﻿using IServices;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Views.Controllers
@@ -21,15 +17,13 @@ namespace Views.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Regions()
         {
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Municipalities()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
     }

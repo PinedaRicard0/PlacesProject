@@ -1,6 +1,9 @@
+using DataAcces;
+using IDataAccess;
 using IServices;
 using Services;
 using System;
+using System.Data.Entity;
 using System.Web.Mvc;
 using Unity;
 using Unity.AspNet.Mvc;
@@ -50,7 +53,9 @@ namespace Views
         public static void RegisterDependencies() {
             UnityContainer container = new UnityContainer();
 
+            container.RegisterType<DbContext, PlacesContext>(new PerRequestLifetimeManager());
             container.RegisterType<IPlacesService, PlacesService>();
+            container.RegisterType<IRegionRepo, RegionRepo>();
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
