@@ -66,12 +66,17 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PlacesContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegionRepo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataAccessI\IDataAccess.csproj">
+      <Project>{56F8447F-1AFD-4941-9234-8624059110D7}</Project>
+      <Name>IDataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{933A4DDB-5644-4AF9-B114-E9AA7C2AF0B9}</Project>
       <Name>Models</Name>

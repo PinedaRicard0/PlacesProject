@@ -75,3 +75,5 @@ _[Ss]cripts
 *.dot[Cc]over
 .vs/Places/v16/Server/sqlite3/storage.ide-shm
 .vs/Places/v16/Server/sqlite3/storage.ide-wal
+.vs/Places/v16/Server/sqlite3/storage.ide
+.vs/Places/DesignTimeBuild/.dtbcache
