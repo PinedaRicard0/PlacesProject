@@ -157,6 +157,7 @@
     </Compile>
     <Compile Include="Mapper\AutoMapperConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\IndexRegionViewModel.cs" />
     <Compile Include="ViewModels\RegionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

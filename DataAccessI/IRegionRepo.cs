@@ -10,5 +10,6 @@ namespace IDataAccess
     {
         Task<List<Region>> GetRegions();
         Task<bool> SaveRegion(Region region);
+        Task<bool> existRegionByCode(int code);
     }
 }

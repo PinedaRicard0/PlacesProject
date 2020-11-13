@@ -9,11 +9,11 @@ namespace Views.ViewModels
     public class RegionViewModel
     {
         public Guid Id { get; set; }
-        [Required]
-        [Display(Name = "Código")]
+        [Required(ErrorMessage = "Campo obligatorio")]
+        [Display(Name = "*Código")]
         public int Code { get; set; }
-        [Required]
-        [Display(Name = "Nombre")]
+        [Required(ErrorMessage = "Campo obligatorio")]
+        [Display(Name = "*Nombre")]
         public string Name { get; set; }
     }
 }

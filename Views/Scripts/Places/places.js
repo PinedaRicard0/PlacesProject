@@ -1,11 +1,15 @@
-﻿function onBtnClick() {
-    $.ajax({
-        type: 'GET',
-        url: $('#actNewRegion').text(),
-        cache: false,
-        success: function (res) {
-            $('#createRegionDiv').html(res);
-            $('#createRegionModal').modal('show');
-        }
-    })
-}
+﻿$(document).ready(function () {
+    let error = $('#isError').val();
+    if (error == 'True') {
+        $('#createRegionModal').modal('show');
+    }
+});
+
+function onCloseCreateModal() {
+    window.location.href = $('#labelIndex').text();
+    //$('#inpName').val("");
+    //$('#inpCode').val("");
+    //$(".text-danger").each(function () {
+    //    $(this).html("");
+    //});
+};

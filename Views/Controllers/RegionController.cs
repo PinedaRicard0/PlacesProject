@@ -28,14 +28,11 @@ namespace Views.Controllers
         {
             var regions = await _placesService.GetAllRegions();
             var res = mapper.Map<List<Region>, List<RegionViewModel>>(regions);
-            return View(res);
-        }
-
-        [HttpGet]
-        [AllowAnonymous]
-        public ActionResult NewRegion() {
-            RegionViewModel region = new RegionViewModel();
-            return PartialView("_CreateRegion", region);
+            IndexRegionViewModel indexViewModel = new IndexRegionViewModel();
+            indexViewModel.ListRegions = res;
+            indexViewModel.Region = new RegionViewModel();
+            indexViewModel.IsError = false;
+            return View(indexViewModel);
         }
 
         [HttpPost]
@@ -44,9 +41,18 @@ namespace Views.Controllers
             if (ModelState.IsValid) {
                 var res = mapper.Map<RegionViewModel, Region>(region);
                 var isSaved = await _placesService.SaveRegion(res);
-                return RedirectToAction("Index");
+                if (isSaved) { 
+                    return RedirectToAction("Index");
+                }
+                ModelState.AddModelError("region.Code", "El código ya está registrado");
             }
-            return PartialView("_CreateRegion", region);
+            var regions = await _placesService.GetAllRegions();
+            var reg = mapper.Map<List<Region>, List<RegionViewModel>>(regions);
+            IndexRegionViewModel indexViewModel = new IndexRegionViewModel();
+            indexViewModel.ListRegions = reg;
+            indexViewModel.Region = region;
+            indexViewModel.IsError = true;
+            return View("Index", indexViewModel);
         }
     }
 }

@@ -26,8 +26,12 @@ namespace Services
 
         public async Task<bool> SaveRegion(Region region)
         {
-            bool res = await _regionRepo.SaveRegion(region);
-            return res;
+            bool exist = await _regionRepo.existRegionByCode(region.Code);
+            if (!exist)
+            {
+                return await _regionRepo.SaveRegion(region);
+            }
+            return false;
         }
     }
 }

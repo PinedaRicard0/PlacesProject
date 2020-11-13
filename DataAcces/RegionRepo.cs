@@ -18,6 +18,12 @@ namespace DataAcces
             _context = context;
         }
 
+        public async Task<bool> existRegionByCode(int code)
+        {
+            bool res = await _context.Region.AnyAsync(r => r.Code == code);
+            return res;
+        }
+
         public async Task<List<Region>> GetRegions()
         {
             List<Region> res =  await _context.Region.ToListAsync();
