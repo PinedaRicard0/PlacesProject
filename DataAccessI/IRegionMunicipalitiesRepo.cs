@@ -10,5 +10,8 @@ namespace IDataAccess
    public interface IRegionMunicipalitiesRepo
     {
         Task<bool> DeleteRegMunByMunicipality(Guid idMunicipality);
+        Task<bool> DeleteRegMunByRegion(Guid idRegion);
+        Task<int> GetNumberOfMunicipalitiesByRegion(Guid idRegion);
+        
     }
 }

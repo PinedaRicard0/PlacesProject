@@ -15,5 +15,7 @@ namespace Views.ViewModels
         [Display(Name = "*Nombre")]
         [MaxLength(100)]
         public string Name { get; set; }
+
+        public int Municipalities { get; set; }
     }
 }

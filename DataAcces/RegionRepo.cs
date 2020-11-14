@@ -13,10 +13,12 @@ namespace DataAcces
     public class RegionRepo : IRegionRepo
     {
         private readonly PlacesContext _context;
+        private readonly IRegionMunicipalitiesRepo _regionMunicipalitiesRepo;
 
-        public RegionRepo(PlacesContext context)
+        public RegionRepo(PlacesContext context, IRegionMunicipalitiesRepo regionMunicipalitiesRepo)
         {
             _context = context;
+            _regionMunicipalitiesRepo = regionMunicipalitiesRepo;
         }
 
         public async Task<bool> ExistRegionByCode(int code)
@@ -53,6 +55,7 @@ namespace DataAcces
 
         public async Task DeleteRegionById(Guid id)
         {
+            await _regionMunicipalitiesRepo.DeleteRegMunByRegion(id);
             Region region = new Region { Id = id};
             _context.Entry(region).State = EntityState.Deleted;
             await _context.SaveChangesAsync();

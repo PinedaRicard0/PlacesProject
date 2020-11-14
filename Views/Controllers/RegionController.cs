@@ -29,6 +29,9 @@ namespace Views.Controllers
             var regions = await _placesService.GetAllRegions();
             var res = mapper.Map<List<Region>, List<RegionViewModel>>(regions);
             IndexRegionViewModel indexViewModel = new IndexRegionViewModel();
+            foreach (var item in res) {
+                item.Municipalities = await _placesService.GetNumberOfMunicipalitiesByRegion(item.Id);
+            }
             indexViewModel.ListRegions = res;
             indexViewModel.Region = new RegionViewModel();
             indexViewModel.IsError = false;
@@ -49,6 +52,10 @@ namespace Views.Controllers
             var regions = await _placesService.GetAllRegions();
             var reg = mapper.Map<List<Region>, List<RegionViewModel>>(regions);
             IndexRegionViewModel indexViewModel = new IndexRegionViewModel();
+            foreach (var item in reg)
+            {
+                item.Municipalities = await _placesService.GetNumberOfMunicipalitiesByRegion(item.Id);
+            }
             indexViewModel.ListRegions = reg;
             indexViewModel.Region = region;
             indexViewModel.IsError = true;
@@ -60,6 +67,10 @@ namespace Views.Controllers
         public async Task<ActionResult> EditRegion(string id) {
             var regions = await _placesService.GetAllRegions();
             var res = mapper.Map<List<Region>, List<RegionViewModel>>(regions);
+            foreach (var item in res)
+            {
+                item.Municipalities = await _placesService.GetNumberOfMunicipalitiesByRegion(item.Id);
+            }
             IndexRegionViewModel indexViewModel = new IndexRegionViewModel();
             indexViewModel.ListRegions = res;
             var region = res.Where(r => r.Id.ToString().Equals(id)).FirstOrDefault();
@@ -84,6 +95,10 @@ namespace Views.Controllers
             }
             var regions = await _placesService.GetAllRegions();
             var reg = mapper.Map<List<Region>, List<RegionViewModel>>(regions);
+            foreach (var item in reg)
+            {
+                item.Municipalities = await _placesService.GetNumberOfMunicipalitiesByRegion(item.Id);
+            }
             IndexRegionViewModel indexViewModel = new IndexRegionViewModel();
             indexViewModel.ListRegions = reg;
             indexViewModel.Region = region;

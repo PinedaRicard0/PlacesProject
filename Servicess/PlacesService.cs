@@ -28,6 +28,10 @@ namespace Services
             return res;
         }
 
+        public async Task<int> GetNumberOfMunicipalitiesByRegion(Guid regionId) {
+            return await _regionMunicipalitiesRepo.GetNumberOfMunicipalitiesByRegion(regionId);
+        }
+
         public async Task<bool> SaveRegion(Region region)
         {
             bool exist = await _regionRepo.ExistRegionByCode(region.Code);

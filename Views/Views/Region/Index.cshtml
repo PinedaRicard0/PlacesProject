@@ -18,6 +18,7 @@
                     <tr class="tblHeader">
                         <th>@Html.Raw("Código")</th>
                         <th>@Html.Raw("Nombre")</th>
+                        <th>@Html.Raw("Cantidad de municipios")</th>
                         <th></th>
                     </tr>
                     @foreach (var reg in Model.ListRegions)
@@ -26,6 +27,7 @@
                         <tr>
                             <td>@Html.Raw(reg.Code.ToString())</td>
                             <td>@Html.Raw(reg.Name)</td>
+                            <td>@Html.Raw(reg.Municipalities)</td>
                             <td>
                                 <a class="editLink" href="@Url.Action("EditRegion", new { id = reg.Id.ToString()})"><span class="iconPointer glyphicon glyphicon-edit" title="Editar"></span></a>
                                 <a class="deleteLink" href="#" onclick="onDeleteBtn('@reg.Id', '@reg.Name');"><span class="iconPointer glyphicon glyphicon-trash" title="Eliminar"></span></a>

@@ -12,6 +12,7 @@ namespace IServices
         Task<bool> SaveRegion(Region region);
         Task<bool> EditRegion(Region region);
         Task DeleteRegion(string regionId);
+        Task<int> GetNumberOfMunicipalitiesByRegion(Guid regionId);
 
         Task<List<Municipality>> GetAllMunicipalities();
         Task<bool> SaveMunicipality(Municipality municipality);
