@@ -10,5 +10,9 @@ namespace IServices
     {
         Task<List<Region>> GetAllRegions();
         Task<bool> SaveRegion(Region region);
+        Task<bool> EditRegion(Region region);
+        Task DeleteRegion(string regionId);
+
+        Task<List<Municipality>> GetAllMunicipalities();
     }
 }

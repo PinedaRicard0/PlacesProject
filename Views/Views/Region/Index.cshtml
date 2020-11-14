@@ -4,13 +4,17 @@
 }
 
 <div class="container">
-    @Html.HiddenFor(model => model.IsError, htmlAttributes: new {@id="isError"})
+    @Html.HiddenFor(model => model.IsError, htmlAttributes: new { @id = "isError" })
+    @Html.HiddenFor(model => model.IsEditing, htmlAttributes: new { @id = "isEditing" })
+    @Html.Hidden("toDeleteRegion", null, htmlAttributes: new { @id = "toDeleteRegion" })
+
     <div class="row ppalDiv">
         <h2>Listado de regiones</h2>
         <div class="col-sm-2"></div>
         <div class="col-sm-8">
             @if (Model.ListRegions.Count() > 0)
             {
+                int index = 0;
                 <table class="table table-hover commonMargin">
                     <tr class="tblHeader">
                         <th>@Html.Raw("Código")</th>
@@ -19,11 +23,16 @@
                     </tr>
                     @foreach (var reg in Model.ListRegions)
                     {
+
                         <tr>
                             <td>@Html.Raw(reg.Code.ToString())</td>
                             <td>@Html.Raw(reg.Name)</td>
-                            <td><span class="glyphicon glyphicon-edit"></span> <span class="glyphicon glyphicon-trash"></span></td>
+                            <td>
+                                <a class="editLink" href="@Url.Action("EditRegion", new { id = reg.Id.ToString()})"><span class="iconPointer glyphicon glyphicon-edit" title="Editar"></span></a>
+                                <a class="deleteLink" href="#" onclick="onDeleteBtn('@reg.Id', '@reg.Name');"><span class="iconPointer glyphicon glyphicon-trash" title="Eliminar"></span></a>
+                            </td>
                         </tr>
+                        index = index + 1;
                     }
                 </table>
             }
@@ -32,12 +41,12 @@
                 <h4 class="commonMargin"><i>@Html.Raw("No hay regiones registradas")</i></h4>
             }
             <div class="btnContainer">
-                <button id="btnCreate" name="btnCreate" class="btn btnStyle" data-toggle="modal" data-target="#createRegionModal">Crear Region</button>
+                <button id="btnCreate" name="btnCreate" class="btn btnStyle" data-toggle="modal" data-target="#createRegionModal">Crear Región</button>
             </div>
         </div>
         <div class="col-sm-2"></div>
     </div>
- </div>
+</div>
 
 @*Region Create Modal*@
 <div class="modal fade" id="createRegionModal" role="dialog" data-backdrop="static" data-keyboard="false">
@@ -45,7 +54,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" onclick="onCloseCreateModal();">&times;</button>
-                <h4>Nueva region</h4>
+                <h4>Nueva región</h4>
             </div>
             @using (Html.BeginForm("CreateRegion", "Region", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
@@ -78,5 +87,67 @@
     </div>
 </div>
 
+@*Region Edit Modal*@
+<div class="modal fade" id="editRegionModal" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" onclick="onCloseEditModal();">&times;</button>
+                <h4>Editar región</h4>
+            </div>
+            @using (Html.BeginForm("EditRegion", "Region", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.HiddenFor(model => model.Region.Id);
+                @Html.AntiForgeryToken()
+                <div class="form-horizontal">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Region.Code, htmlAttributes: new { @class = "control-label col-md-2 tblHeader" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Region.Code, new { htmlAttributes = new { @class = "form-control", @id = "inpEditCode" } })
+                                @Html.ValidationMessageFor(model => model.Region.Code, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Region.Name, htmlAttributes: new { @class = "control-label col-md-2 tblHeader" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Region.Name, new { htmlAttributes = new { @class = "form-control", @id = "inpEditName" } })
+                                @Html.ValidationMessageFor(model => model.Region.Name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btnStyle">Editar</button>
+                        <button type="button" class="btn btnClose" data-dismiss="modal" onclick="onCloseEditModal();">Close</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@*Region Edit Modal*@
+<div class="modal fade" id="deleteRegionModal" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" onclick="onCloseDeleteModal();">&times;</button>
+                <h4>Eliminar Región</h4>
+            </div>
+            <div class="form-horizontal">
+                <div class="modal-body">
+                    <p id="msgDeleteRegion"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btnStyle" onclick="onConfirmRegionDelete();">Eliminar</button>
+                    <button type="button" class="btn btnClose" data-dismiss="modal" onclick="onCloseDeleteModal();">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <label id="labelIndex" class="hidden">@Url.Action("Index")</label>
-<script type="text/javascript" src="~/Scripts/Places/places.js"></script>
+<label id="labelDelete" class="hidden">@Url.Action("DeleteRegion")</label>
+<script type="text/javascript" src="~/Scripts/Places/Region.js"></script>

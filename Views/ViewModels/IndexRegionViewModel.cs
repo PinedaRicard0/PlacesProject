@@ -10,5 +10,6 @@ namespace Views.ViewModels
         public List<RegionViewModel> ListRegions { get; set; }
         public RegionViewModel Region { get; set; }
         public bool IsError { get; set; }
+        public bool IsEditing { get; set; }
     }
 }

@@ -29,3 +29,20 @@ textarea {
 .tblHeader {color:cadetblue}
 .btnStyle {background-color:cadetblue; color:white}
 .btnClose {background-color: dimgrey;color: white}
+.iconPointer {
+    cursor: pointer;
+    font-size: 18px;
+}
+.editLink {
+    color: #7EA05F;
+}
+.editLink:hover {
+    color: #4c6338;
+}
+.deleteLink {
+    color: #A0615F;
+}
+
+.deleteLink:hover {
+    color: #9a423f;
+}
