@@ -16,6 +16,9 @@ namespace Views.MapperFilter
             var config = new MapperConfiguration(cfg => {
                 cfg.CreateMap<Region, RegionViewModel>();
                 cfg.CreateMap<RegionViewModel, Region>();
+                cfg.CreateMap<Municipality, MunicipalityViewModel>();
+                cfg.CreateMap<MunicipalityViewModel, Municipality>();
+
             });
 
             Mapper = config.CreateMapper();

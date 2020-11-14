@@ -1,6 +1,6 @@
 ﻿@model Views.ViewModels.IndexRegionViewModel
 @{
-    ViewBag.Title = "Regions";
+    ViewBag.Title = "Regiones";
 }
 
 <div class="container">
@@ -14,7 +14,6 @@
         <div class="col-sm-8">
             @if (Model.ListRegions.Count() > 0)
             {
-                int index = 0;
                 <table class="table table-hover commonMargin">
                     <tr class="tblHeader">
                         <th>@Html.Raw("Código")</th>
@@ -32,7 +31,6 @@
                                 <a class="deleteLink" href="#" onclick="onDeleteBtn('@reg.Id', '@reg.Name');"><span class="iconPointer glyphicon glyphicon-trash" title="Eliminar"></span></a>
                             </td>
                         </tr>
-                        index = index + 1;
                     }
                 </table>
             }
@@ -127,7 +125,7 @@
     </div>
 </div>
 
-@*Region Edit Modal*@
+@*Region Delete Modal*@
 <div class="modal fade" id="deleteRegionModal" role="dialog" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-md">
         <div class="modal-content">

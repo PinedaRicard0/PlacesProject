@@ -13,11 +13,13 @@ namespace Services
     {
         private readonly IRegionRepo _regionRepo;
         private readonly IMunicipalityRepo _municipalityRepo;
+        private readonly IRegionMunicipalitiesRepo _regionMunicipalitiesRepo;
 
-        public PlacesService(IRegionRepo regionRepo, IMunicipalityRepo municipalityRepo)
+        public PlacesService(IRegionRepo regionRepo, IMunicipalityRepo municipalityRepo, IRegionMunicipalitiesRepo regionMunicipalitiesRepo)
         {
             _regionRepo = regionRepo;
             _municipalityRepo = municipalityRepo;
+            _regionMunicipalitiesRepo = regionMunicipalitiesRepo;
         }
 
         public async Task<List<Region>> GetAllRegions()
@@ -55,6 +57,35 @@ namespace Services
         {
             var res = await _municipalityRepo.GetMunicipalities();
             return res;
+        }
+
+        public async Task<bool> SaveMunicipality(Municipality municipality)
+        {
+            bool exist = await _municipalityRepo.ExistMunicipalityByCode(municipality.Code);
+            if (!exist)
+            {
+                return await _municipalityRepo.SaveMunicipality(municipality);
+            }
+            return false;
+        }
+
+        public async Task DeleteMunicipality(string municipalityId)
+        {
+            Guid id = Guid.Parse(municipalityId);
+            await _municipalityRepo.DeleteMunicipalityById(id);
+        }
+
+        public async Task<bool> EditMunicipality(Municipality municipality)
+        {
+            Municipality storeMunipaciliy = await _municipalityRepo.GetMunicipalityByCode(municipality.Code);
+            if (storeMunipaciliy == null || storeMunipaciliy.Id == municipality.Id)
+            {
+                if (await _municipalityRepo.EditMunicipality(municipality) && municipality.Status == "Inactivo") {
+                   await _regionMunicipalitiesRepo.DeleteRegMunByMunicipality(municipality.Id);
+                }
+                return true;
+            }
+            return false;
         }
     }
 }

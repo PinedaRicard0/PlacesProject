@@ -56,6 +56,8 @@ namespace Views
             container.RegisterType<DbContext, PlacesContext>(new PerRequestLifetimeManager());
             container.RegisterType<IPlacesService, PlacesService>();
             container.RegisterType<IRegionRepo, RegionRepo>();
+            container.RegisterType<IMunicipalityRepo, MunicipalityRepo>();
+            container.RegisterType<IRegionMunicipalitiesRepo, RegionMunicipalitiesRepo>();
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }

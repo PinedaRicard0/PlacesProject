@@ -64,8 +64,10 @@
       <DependentUpon>202011110032273_CreatingRegionMunicipalitiesTbl.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="MunicipalityRepo.cs" />
     <Compile Include="PlacesContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegionMunicipalitiesRepo.cs" />
     <Compile Include="RegionRepo.cs" />
   </ItemGroup>
   <ItemGroup>

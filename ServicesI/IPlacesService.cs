@@ -14,5 +14,8 @@ namespace IServices
         Task DeleteRegion(string regionId);
 
         Task<List<Municipality>> GetAllMunicipalities();
+        Task<bool> SaveMunicipality(Municipality municipality);
+        Task DeleteMunicipality(string municipalityId);
+        Task<bool> EditMunicipality(Municipality municipality);
     }
 }

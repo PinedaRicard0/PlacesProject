@@ -3,6 +3,7 @@ using Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,7 +19,7 @@ namespace DataAcces
             _context = context;
         }
 
-        public async Task<bool> existRegionByCode(int code)
+        public async Task<bool> ExistRegionByCode(int code)
         {
             bool res = await _context.Region.AnyAsync(r => r.Code == code);
             return res;
@@ -36,5 +37,26 @@ namespace DataAcces
             await _context.SaveChangesAsync();
             return true;
         }
+
+        public async Task<Region> GetRegionByCode(int code)
+        {
+            return await _context.Region.Where(r => r.Code == code).FirstOrDefaultAsync();
+        }
+
+        public async Task<bool> EditRegion(Region region)
+        {
+            _context.Set<Region>().AddOrUpdate(region);
+            //_context.Entry(region).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task DeleteRegionById(Guid id)
+        {
+            Region region = new Region { Id = id};
+            _context.Entry(region).State = EntityState.Deleted;
+            await _context.SaveChangesAsync();
+        }
+
     }
 }

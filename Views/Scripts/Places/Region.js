@@ -1,7 +1,9 @@
 ﻿$(document).ready(function () {
-    $('#inpCode').val("");
     let error = $('#isError').val();
     let editing = $('#isEditing').val();
+    if (error == 'False') {
+        $('#inpCode').val("");
+    }
     //An error when creating a region
     if (error == 'True' && editing == 'False') {
         $('#createRegionModal').modal('show');
@@ -15,9 +17,6 @@
         $('#editRegionModal').modal('show');
     }
 });
-
-
-//functions related to regions action
 
 function onCloseCreateModal() {
     if (window.location.href.includes('CreateRegion')) {
@@ -54,5 +53,3 @@ function onConfirmRegionDelete(){
 function onCloseDeleteModal() {
     $('#toDeleteRegion').val("");
 }
-
-//functions related with municipalities action

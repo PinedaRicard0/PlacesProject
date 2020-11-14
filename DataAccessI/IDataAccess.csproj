@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IMunicipalityRepo.cs" />
+    <Compile Include="IRegionMunicipalitiesRepo.cs" />
     <Compile Include="IRegionRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
