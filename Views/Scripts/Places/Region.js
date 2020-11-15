@@ -53,3 +53,16 @@ function onConfirmRegionDelete(){
 function onCloseDeleteModal() {
     $('#toDeleteRegion').val("");
 }
+
+function onAddMunicipality(regionId, regionName) {
+    $.ajax({
+        method: 'GET',
+        url: $('#addMunicipalities').text(),
+        data: { regionId: regionId , regionName: regionName},
+        success: function (res) {
+            $('#addMunicipalitiesContainer').html(res);
+            $('#addMunicipalityModal').modal('show');
+            
+        }
+    });
+}

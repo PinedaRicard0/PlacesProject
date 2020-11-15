@@ -43,6 +43,11 @@ namespace DataAcces
             return true;
         }
 
+        public async Task<List<RegionMunicipalities>> GetRegMunByRegionId(Guid idRegion)
+        {
+            return await _context.RegionMunicipalities.Where(rm => rm.RegionId == idRegion).ToListAsync();
+        }
+
         public Task<int> GetNumberOfMunicipalitiesByRegion(Guid idRegion)
         {
             return _context.RegionMunicipalities.CountAsync(rm => rm.RegionId == idRegion);
@@ -55,6 +60,19 @@ namespace DataAcces
         private async Task<List<RegionMunicipalities>> GetRegMunByRegion(Guid idRegion)
         {
             return await _context.RegionMunicipalities.Where(rm => rm.RegionId == idRegion).ToListAsync();
+        }
+
+        public async Task<bool> AddMultipleMunicipalitiesToRegion(Guid idRegion, List<Municipality> municipalities)
+        {
+            foreach (var item in municipalities) {
+                RegionMunicipalities regionMunicipality = new RegionMunicipalities() { 
+                    MunicipalityId = item.Id,
+                    RegionId = idRegion
+                };
+                _context.RegionMunicipalities.Add(regionMunicipality);
+            }
+            await _context.SaveChangesAsync();
+            return true;
         }
     }
 }

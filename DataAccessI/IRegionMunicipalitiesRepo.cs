@@ -12,6 +12,8 @@ namespace IDataAccess
         Task<bool> DeleteRegMunByMunicipality(Guid idMunicipality);
         Task<bool> DeleteRegMunByRegion(Guid idRegion);
         Task<int> GetNumberOfMunicipalitiesByRegion(Guid idRegion);
+        Task<List<RegionMunicipalities>> GetRegMunByRegionId(Guid idRegion);
+        Task<bool> AddMultipleMunicipalitiesToRegion(Guid idRegion, List<Municipality> municipalities);
         
     }
 }

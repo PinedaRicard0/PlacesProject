@@ -60,5 +60,24 @@ namespace DataAcces
             await _context.SaveChangesAsync();
             return true;
         }
+
+        public async Task<List<Municipality>> GetMunicipalitiesByRegionId(Guid regionId)
+        {
+            List<Municipality> res = new List<Municipality>();
+            var regionMunicipalities = await _regionMunicipalitiesRepo.GetRegMunByRegionId(regionId);
+            if (regionMunicipalities != null && regionMunicipalities.Count() > 0) {
+                foreach (var item in regionMunicipalities) {
+                    var municiaplity = await _context.Municipality.Where(m => m.Id == item.MunicipalityId).FirstOrDefaultAsync();
+                    if (municiaplity != null)
+                        res.Add(municiaplity);
+                }
+            }
+            return res;
+        }
+
+        public async Task<List<Municipality>> GetAllActiveMunicipalities()
+        {
+            return await _context.Municipality.Where(m => m.Status == "Activo").ToListAsync();
+        }
     }
 }

@@ -91,5 +91,30 @@ namespace Services
             }
             return false;
         }
+
+        public async Task<Region> GetRegion(string id)
+        {
+            return await _regionRepo.GetRegionById(Guid.Parse(id));
+        }
+
+        public async Task<List<Municipality>> GetMunicipalitiesByRegion(Guid regionId)
+        {
+            return await _municipalityRepo.GetMunicipalitiesByRegionId(regionId);
+        }
+
+        public async Task<List<Municipality>> GetPossibleMununicipalitiesToAdd(string id)
+        {
+            List<Municipality> res = new List<Municipality>();
+            List<Municipality> currentMunicipalities = await GetMunicipalitiesByRegion(Guid.Parse(id));
+            List<Municipality> allMunicipalities = await _municipalityRepo.GetAllActiveMunicipalities();
+            res = allMunicipalities.Except(currentMunicipalities).ToList();
+            return res;
+        }
+
+        public async Task<bool> AssociatedMuniciapalities(string regionId, List<Municipality> municipalities)
+        {
+            await _regionMunicipalitiesRepo.AddMultipleMunicipalitiesToRegion(Guid.Parse(regionId), municipalities);
+            return true;
+        }
     }
 }

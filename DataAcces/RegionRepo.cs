@@ -61,5 +61,9 @@ namespace DataAcces
             await _context.SaveChangesAsync();
         }
 
+        public async Task<Region> GetRegionById(Guid regionId)
+        {
+            return await _context.Region.Where(r => r.Id == regionId).FirstOrDefaultAsync();
+        }
     }
 }

@@ -65,46 +65,76 @@ namespace Views.Controllers
 
         [HttpGet]
         public async Task<ActionResult> EditRegion(string id) {
-            var regions = await _placesService.GetAllRegions();
-            var res = mapper.Map<List<Region>, List<RegionViewModel>>(regions);
-            foreach (var item in res)
-            {
-                item.Municipalities = await _placesService.GetNumberOfMunicipalitiesByRegion(item.Id);
+            var region = await _placesService.GetRegion(id);
+            if (region != null) {
+                var regionMunicipalities = await _placesService.GetMunicipalitiesByRegion(region.Id);
+                var regionViewModel = mapper.Map<Region, RegionViewModel>(region);
+                var listMunicipalities = mapper.Map<List<Municipality>, List<MunicipalityViewModel>>(regionMunicipalities);
+                EditRegionViewModel viewModel = new EditRegionViewModel()
+                {
+                    Region = regionViewModel,
+                    Municipalities = listMunicipalities,
+                    OriginalName = regionViewModel.Name
+                    
+                };
+                return View(viewModel);
             }
-            IndexRegionViewModel indexViewModel = new IndexRegionViewModel();
-            indexViewModel.ListRegions = res;
-            var region = res.Where(r => r.Id.ToString().Equals(id)).FirstOrDefault();
-            indexViewModel.Region = region;
-            indexViewModel.IsEditing = true;
-            indexViewModel.IsError = false;
-            return View("Index", indexViewModel);
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
-        public async Task<ActionResult> EditRegion(RegionViewModel region)
+        public async Task<ActionResult> EditRegion(SaveEditRegionViewModel region)
         {
+            bool isEdited = false;
             if (ModelState.IsValid)
             {
-                var res = mapper.Map<RegionViewModel, Region>(region);
-                var isEdited = await _placesService.EditRegion(res);
-                if (isEdited)
+                var res = mapper.Map<SaveEditRegionViewModel, Region>(region);
+                isEdited = await _placesService.EditRegion(res);
+                if (!isEdited)
                 {
-                    return RedirectToAction("Index");
+                    ModelState.AddModelError("region.Code", "El código ya está registrado");
                 }
-                ModelState.AddModelError("region.Code", "El código ya está registrado");
             }
-            var regions = await _placesService.GetAllRegions();
-            var reg = mapper.Map<List<Region>, List<RegionViewModel>>(regions);
-            foreach (var item in reg)
+            var regionMunicipalities = await _placesService.GetMunicipalitiesByRegion(region.Id);
+            var listMunicipalities = mapper.Map<List<Municipality>, List<MunicipalityViewModel>>(regionMunicipalities);
+
+            RegionViewModel viewRegion = new RegionViewModel()
             {
-                item.Municipalities = await _placesService.GetNumberOfMunicipalitiesByRegion(item.Id);
-            }
-            IndexRegionViewModel indexViewModel = new IndexRegionViewModel();
-            indexViewModel.ListRegions = reg;
-            indexViewModel.Region = region;
-            indexViewModel.IsError = true;
-            indexViewModel.IsEditing = true;
-            return View("Index", indexViewModel);
+                Code = region.Code,
+                Id = region.Id,
+                Name = region.Name
+            };
+
+            EditRegionViewModel viewModel = new EditRegionViewModel()
+            {
+                Region = viewRegion,
+                Municipalities = listMunicipalities,
+                OriginalName = (isEdited) ? region.Name : region.OriginalName
+
+            };
+            return View(viewModel);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> AddMunicipalities(string regionId, string regionName) {
+            var municipalities = await _placesService.GetPossibleMununicipalitiesToAdd(regionId);
+            var options = mapper.Map<List<Municipality>, List<MunicipalitySelectionViewModel>>(municipalities);
+            AddMunicipalitiesViewModel viewModel = new AddMunicipalitiesViewModel() {
+                Region = regionName,
+                RegionId = regionId,
+                Municipalities = options
+            };
+            return PartialView("_AddMunicipalities", viewModel);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> AddMunicipalities(AddMunicipalitiesViewModel viewModel)
+        {
+            var regionId = viewModel.RegionId;
+            var toAddMunicipalities = viewModel.Municipalities.Where(m => m.IsSelected).ToList();
+            var toAdd = mapper.Map<List<MunicipalitySelectionViewModel>, List<Municipality>>(toAddMunicipalities);
+            await _placesService.AssociatedMuniciapalities(regionId, toAdd);
+            return RedirectToAction("EditRegion", new { id = viewModel.RegionId});
         }
 
         [HttpGet]

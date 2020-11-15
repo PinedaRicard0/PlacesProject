@@ -9,6 +9,8 @@ namespace IDataAccess
     public interface IRegionRepo
     {
         Task<List<Region>> GetRegions();
+        Task<Region> GetRegionById(Guid regionId);
+        
         Task<bool> SaveRegion(Region region);
         Task<bool> ExistRegionByCode(int code);
         Task<Region> GetRegionByCode(int Code);

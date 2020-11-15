@@ -18,7 +18,10 @@ namespace Views.MapperFilter
                 cfg.CreateMap<RegionViewModel, Region>();
                 cfg.CreateMap<Municipality, MunicipalityViewModel>();
                 cfg.CreateMap<MunicipalityViewModel, Municipality>();
-
+                cfg.CreateMap<SaveEditRegionViewModel, Region>();
+                cfg.CreateMap<Region, SaveEditRegionViewModel>();
+                cfg.CreateMap<Municipality, MunicipalitySelectionViewModel>();
+                cfg.CreateMap<MunicipalitySelectionViewModel, Municipality>();
             });
 
             Mapper = config.CreateMapper();
