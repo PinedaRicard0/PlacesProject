@@ -66,3 +66,21 @@ function onAddMunicipality(regionId, regionName) {
         }
     });
 }
+
+function onDeleteRegMunBtn(regionName, municipalityId, municipalityName ) {
+    $('#toDeleteMunicipality').val(municipalityId);
+    $('#msgDeleteRegMun').html(`¿Realmente quieres retirar el municipio <b>${municipalityName}</b> de la región <b>${regionName}</b>? `);
+    $('#deleteRegMunModal').modal('show');
+}
+
+function onConfirmRegMunDelete(regionId) {
+    debugger;
+    let url = $('#deleteRegMun').text();
+    let idMunicipality = $('#toDeleteMunicipality').val();
+    url = `${url}?regionId=${regionId}&&municipalityId=${idMunicipality}`;
+    window.location.href = url;
+}
+
+function onCloseDeleteRegMunModal() {
+    $('#toDeleteMunicipality').val("");
+};

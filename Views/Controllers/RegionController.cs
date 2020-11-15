@@ -144,5 +144,14 @@ namespace Views.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public async Task<ActionResult> DeleteRegionMunicipality(string regionId, string municipalityId) {
+            if (regionId != null && municipalityId != null && !regionId.Equals("") && !municipalityId.Equals("")) {
+                await _placesService.DeleteRegionMunicipality(regionId, municipalityId);
+                return RedirectToAction("EditRegion", new { id = regionId });
+            }
+            return RedirectToAction("Index");
+        }
     }
 }

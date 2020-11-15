@@ -25,6 +25,8 @@ namespace IServices
         Task<List<Municipality>>GetPossibleMununicipalitiesToAdd(string id);
         Task<bool> AssociatedMuniciapalities(string regionId, List<Municipality> municipalities);
 
+        Task DeleteRegionMunicipality(string regionId, string municipalityId);
+
 
 
     }

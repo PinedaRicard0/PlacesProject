@@ -116,5 +116,10 @@ namespace Services
             await _regionMunicipalitiesRepo.AddMultipleMunicipalitiesToRegion(Guid.Parse(regionId), municipalities);
             return true;
         }
+
+        public async Task DeleteRegionMunicipality(string regionId, string municipalityId)
+        {
+            await _regionMunicipalitiesRepo.DeleteRegMun(Guid.Parse(regionId), Guid.Parse(municipalityId));
+        }
     }
 }

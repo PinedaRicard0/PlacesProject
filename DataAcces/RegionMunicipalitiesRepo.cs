@@ -74,5 +74,15 @@ namespace DataAcces
             await _context.SaveChangesAsync();
             return true;
         }
+
+        public async Task DeleteRegMun(Guid idRegion, Guid idMunicipality)
+        {
+            RegionMunicipalities regionMunicipalities = new RegionMunicipalities() { 
+                RegionId = idRegion,
+                MunicipalityId = idMunicipality
+            };
+            _context.Entry(regionMunicipalities).State = EntityState.Deleted;
+            await _context.SaveChangesAsync();
+        }
     }
 }

@@ -7,7 +7,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" onclick="onCloseEditModal();">&times;</button>
-                <h4>Agregar municipios a la region @Html.Raw(Model.Region)</h4>
+                <h4>Agregar municipios a la región @Html.Raw(Model.Region)</h4>
             </div>
             @using (Html.BeginForm("AddMunicipalities", "Region", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
