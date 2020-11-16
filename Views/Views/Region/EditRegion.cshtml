@@ -6,7 +6,7 @@
     <div class="row ppalDiv">
         @Html.ActionLink("< Regresar", "Index")
         @Html.Hidden("toDeleteMunicipality", null, htmlAttributes: new { @id = "toDeleteMunicipality" })
-        <h2>Editando región @Html.Raw(Model.Region.Name)</h2>
+        <h2>Editando región @Html.Raw(Model.OriginalName)</h2>
         <div class="col-sm-2"></div>
         <div class="col-sm-8">
             @using (Html.BeginForm("EditRegion", "Region", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
