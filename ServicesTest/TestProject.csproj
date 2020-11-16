@@ -93,19 +93,19 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataAccessI\IDataAccess.csproj">
+    <ProjectReference Include="..\IDataAccess\IDataAccess.csproj">
       <Project>{56F8447F-1AFD-4941-9234-8624059110D7}</Project>
       <Name>IDataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IServices\IServices.csproj">
+      <Project>{678CC3C1-E9EF-47E4-A365-F6EF1DEF3154}</Project>
+      <Name>IServices</Name>
     </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{933A4DDB-5644-4AF9-B114-E9AA7C2AF0B9}</Project>
       <Name>Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ServicesI\IServices.csproj">
-      <Project>{678CC3C1-E9EF-47E4-A365-F6EF1DEF3154}</Project>
-      <Name>IServices</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Servicess\Services.csproj">
+    <ProjectReference Include="..\Services\Services.csproj">
       <Project>{4D10343B-50C4-4ED1-8273-A6540CCF16A4}</Project>
       <Name>Services</Name>
     </ProjectReference>

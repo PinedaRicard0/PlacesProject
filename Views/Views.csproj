@@ -225,23 +225,23 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataAccessI\IDataAccess.csproj">
-      <Project>{56F8447F-1AFD-4941-9234-8624059110D7}</Project>
-      <Name>IDataAccess</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DataAcces\DataAcces.csproj">
       <Project>{001BB800-A78A-4777-9D13-87F32DC61207}</Project>
       <Name>DataAcces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IDataAccess\IDataAccess.csproj">
+      <Project>{56F8447F-1AFD-4941-9234-8624059110D7}</Project>
+      <Name>IDataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IServices\IServices.csproj">
+      <Project>{678CC3C1-E9EF-47E4-A365-F6EF1DEF3154}</Project>
+      <Name>IServices</Name>
     </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{933a4ddb-5644-4af9-b114-e9aa7c2af0b9}</Project>
       <Name>Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ServicesI\IServices.csproj">
-      <Project>{678CC3C1-E9EF-47E4-A365-F6EF1DEF3154}</Project>
-      <Name>IServices</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Servicess\Services.csproj">
+    <ProjectReference Include="..\Services\Services.csproj">
       <Project>{4D10343B-50C4-4ED1-8273-A6540CCF16A4}</Project>
       <Name>Services</Name>
     </ProjectReference>

@@ -15,11 +15,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Entities", "Entities", "{8B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAcces", "DataAcces\DataAcces.csproj", "{001BB800-A78A-4777-9D13-87F32DC61207}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IDataAccess", "DataAccessI\IDataAccess.csproj", "{56F8447F-1AFD-4941-9234-8624059110D7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IDataAccess", "IDataAccess\IDataAccess.csproj", "{56F8447F-1AFD-4941-9234-8624059110D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IServices", "ServicesI\IServices.csproj", "{678CC3C1-E9EF-47E4-A365-F6EF1DEF3154}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IServices", "IServices\IServices.csproj", "{678CC3C1-E9EF-47E4-A365-F6EF1DEF3154}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Servicess\Services.csproj", "{4D10343B-50C4-4ED1-8273-A6540CCF16A4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{4D10343B-50C4-4ED1-8273-A6540CCF16A4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject", "ServicesTest\TestProject.csproj", "{725B1392-6063-487B-814E-ADCEF0F4F8C1}"
 EndProject

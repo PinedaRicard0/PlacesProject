@@ -75,7 +75,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataAccessI\IDataAccess.csproj">
+    <ProjectReference Include="..\IDataAccess\IDataAccess.csproj">
       <Project>{56F8447F-1AFD-4941-9234-8624059110D7}</Project>
       <Name>IDataAccess</Name>
     </ProjectReference>
